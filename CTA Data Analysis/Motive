@@ -1,1 +1,105 @@
+The primary aim of this project is to tackle the issue mentioned earlier by utilising statistical techniques to analyse and forecast the quantity of trips in particular time periods, taking into account historical trends, weather patterns, and holiday information. We intend to construct a model that enables benchmarking analysis and can be utilised as a point of reference for subsequent investigations in this field.
 
+
+QUESTIONS:
+The questions we aim to answer upon completion of this project are related to the impact of external factors based on geographic location, weather conditions, seasons, and holidays:
+1. What are the transit routes with the highest number of boarding passengers?
+2. Compare the number of trips on various routes between weekdays and weekends.
+3. The impact of seasons and temperature on the usage of Chicago Transit Authority.
+4. The impact of holidays and weekends on the usage of Chicago Transit Authority.
+5. The influence of crime statistics in the particular area and route number on the number of trips
+held.
+6. How drastically have the passenger statistics changed due to COVID-19?
+7. To identify the routes with a high demand for transit vehicles that are currently unable to meet
+passenger needs, and provide recommendations to CTA on how to improve transit services in
+those areas.
+8. Location density diagrams for the busiest stations.
+9. How can the number of travels in a certain period of time be predicted?
+10. To analyse crime statistics in areas where CTA routes have a high ridership, and recommend
+possible measures to reduce crime and increase passenger safety on these routes.
+
+DATA PROCESSING:
+CTA Bus data: CTA Ridership Bus Routes
+CTA L-Train data: CTA Ridership Train Routes Daily and CTA Ridership Train Routes Monthly CTA Daily Ridership data: CTA Ridership Daily Boarding
+Weather data collected from National Centers for Environmental Information: Weather Data
+US Holiday Dates (2004-2021) : Holiday Dataset
+Crime data collected from Crimes - 2011 to 2012 : Crime Dataset
+
+BUS DATA:
+The bus dataset consists of the columns:
+● route - The specific number assigned to a bus route.
+● routename - The name of this bus route.
+● Month_Beginning - The first date of every month from the year 2001 to present.
+● Avg_Weekday_Rides - Route specific average number of rides taking place on
+weekdays in a month.
+● Avg_Saturday_Rides - Route specific average number of rides taking place on
+Saturdays in a month.
+● Avg_Sunday_Holiday_Rides - Route specific average number of rides taking place on
+Sundays and Holidays in a month.
+● MonthTotal - The total number of route specific rides in a month.
+CHANGES MADE TO THE DATASET:
+● The Month_Beginning column was changed to the date format.
+● NA values were eliminated.
+
+L-TRAIN DATA:
+The L-Train dataset consists of the columns:
+● Station_id - The specific ID of the L-train station.
+● Stationame- The name of the L-train station.
+● month_beginning - The first date of every month from the year 2001 to 2022.
+● Weekday_Rides - The total number of trips taken on a weekday.
+● Saturday_Rides - The total number of trips taken on a Saturday.
+● Sunday_Holiday_Rides - The total number of trips taken on a Sunday/Holiday.
+● monthtotal - The total number of trips in a month.
+       
+CHANGES MADE TO THE DATASET:
+● Changed the month_beginning column to date format, specifically changed to m/d/yyyy format.
+
+WEATHER DATA:
+The Weather dataset consists of the columns:
+● Date- Date ranging from 2000 to 2011
+● TAVG- Average temperature of the day in fahrenheit
+● TMAX- Maximum temperature of the day in fahrenheit
+● TMIN - Minimum temperature of the day in fahrenheit
+● PRCP - Precipitation of the day
+● SNOW- Amount of snowfall on the day
+● SNOWD - Depth of the snow on the day
+CHANGES MADE TO THE DATASET:
+● Some TAVG values were missing. Calculated the TAVG value by taking the average of TMAX and TMIN.
+● Replaced NA values in PRCP, SNOW and SNOWD with 0.
+3.4 CRIME DATA:
+The Crime dataset consists of the columns:
+● ID
+● Case.Number
+● Date
+● Block
+● IUCR
+● Primary.Type
+● Description
+● Arrest
+● Domestic
+● Beat
+● District
+● Ward
+● Community.Area
+● FBI.Code
+● X.Coordinate
+● Y.Coordinate
+● Year
+● Updated.On
+● Latitude
+● Longitude
+● Location
+● Location.Description
+
+CHANGES MADE TO THE DATASET:
+● The columns X.Coordinate, Y.Coordinate, Latitude and Location were eliminated.
+● The Date column consisted of both the date and time of the crime. This is split into two
+different columns, Date and Time.
+● Splitting caused the dates to appear in the format MM/DD/00YY. This has been
+changed to MM/DD/YYYY and the column type is changed from character to date.
+● The Time column is changed to 24-hour format using ITime.
+● A new column ActiveOrInactive is added to the dataset which describes whether the
+crime occurred during the active or inactive hours of the day, based on the Time.
+
+COMBINED DATA:
+● Merged the L-train ridership data with weather data to get the date, number of trips, the temperature and the snowfall on a particular day. This data is further used for the multiple regression modelling.
